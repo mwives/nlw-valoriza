@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import { sendReceivedComlpimentEmail } from "../emails/compliment";
 import { ComplimentsRepository } from "../repositories/ComplimentsRepository";
 import { UsersRepository } from "../repositories/UsersRepository";
 
@@ -39,6 +40,8 @@ export class CreateComplimentService {
     });
 
     await complimentsRepository.save(compliment);
+
+    sendReceivedComlpimentEmail(user_sender, user_receiver);
 
     return compliment;
   }
