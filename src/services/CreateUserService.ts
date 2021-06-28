@@ -14,11 +14,23 @@ export class CreateUserService {
   async execute({ name, email, password, admin = false }: IUserRequest) {
     const usersRepository = getCustomRepository(UsersRepository);
 
-    if (!email) throw new Error("No email provided");
+    if (!email) {
+      throw new Error("No email provided");
+    }
 
     const userAlreadyExists = await usersRepository.findOne({ email });
 
-    if (userAlreadyExists) throw new Error("User already exists");
+    if (userAlreadyExists) {
+      throw new Error("Email is invalid or already taken");
+    }
+
+    if (password.length < 6) {
+      throw new Error("Password must have at least 6 characters");
+    }
+
+    if (password.toLowerCase().includes("password")) {
+      throw new Error("Password may not contain \"password\"");
+    }
 
     const passwordHash = await hash(password, 8);
 
