@@ -2,6 +2,7 @@ import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
 import { hash } from "bcryptjs";
 import { sendWelcomeEmail } from "../emails/account";
+import isEmail from 'validator/lib/isEmail';
 
 interface IUserRequest {
   name: string;
@@ -15,6 +16,12 @@ export class CreateUserService {
     const usersRepository = getCustomRepository(UsersRepository);
 
     if (!email) {
+      throw new Error("No email provided");
+    }
+
+    const isValidEmail = isEmail(email);
+
+    if (!isValidEmail) {
       throw new Error("No email provided");
     }
 
