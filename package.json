@@ -1,0 +1,33 @@
+{
+   "name": "nlw-valoriza",
+   "version": "1.0.0",
+   "main": "index.js",
+   "license": "MIT",
+   "scripts": {
+      "dev": "env-cmd -f ./config/dev.env ts-node-dev src/server.ts",
+      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+      "start": "ts-node src/index.ts"
+   },
+   "devDependencies": {
+      "@types/bcryptjs": "^2.4.2",
+      "@types/express": "^4.17.12",
+      "@types/jsonwebtoken": "^8.5.2",
+      "@types/uuid": "^8.3.0",
+      "env-cmd": "^10.1.0",
+      "ts-node": "3.3.0",
+      "ts-node-dev": "^1.1.6",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "class-transformer": "^0.4.0",
+      "express": "^4.17.1",
+      "express-async-errors": "^3.1.1",
+      "jsonwebtoken": "^8.5.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.10",
+      "sqlite3": "^5.0.2",
+      "typeorm": "0.2.34",
+      "uuid": "^8.3.2"
+   }
+}
